@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human-Computer Interaction - UT Austin Information</title>
+    <style>
+        /* CSS Variables for UT Austin Branding */
+        :root {
+            --ut-orange: #bf5700;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-gray: #f4f4f4;
+            --border-color: #dddddd;
+            --link-color: #bf5700;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            padding: 8px 40px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .top-bar .utexas {
+            color: var(--ut-orange);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-right: 10px;
+        }
+
+        .top-bar span:not(.utexas) {
+            color: var(--text-light);
+            margin: 0 5px;
+        }
+
+        /* Header & Nav */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 60px;
+            background-color: var(--ut-orange);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            color: var(--ut-orange);
+            font-weight: normal;
+        }
+
+        .logo-text h2 {
+            font-size: 28px;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-top: -5px;
+        }
+
+        .search-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 5px 15px;
+            background: white;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px;
+            width: 200px;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--ut-orange);
+            font-size: 16px;
+        }
+
+        /* Main Navigation */
+        .main-nav {
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 40px;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .main-nav li {
+            padding: 15px 0;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .main-nav li.active {
+            color: var(--ut-orange);
+        }
+
+        .main-nav li::after {
+            content: '▼';
+            font-size: 10px;
+            color: var(--text-light);
+        }
+
+        .main-nav li.no-dropdown::after {
+            content: '';
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px 60px;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            font-size: 13px;
+            color: var(--text-light);
+            margin: 20px 0 30px;
+            display: inline-block;
+        }
+
+        .breadcrumbs a {
+            color: var(--text-light);
+        }
+
+        /* Headings & Text */
+        h1.page-title {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 40px;
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+
+        .meta-info strong {
+            color: var(--text-main);
+        }
+
+        .meta-info span {
+            color: var(--text-light);
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        h2.section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 15.5px;
+            color: #444;
+        }
+
+        .skills-topics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .skills-topics ul {
+            list-style: none;
+        }
+
+        .skills-topics li {
+            font-size: 15.5px;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 50px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14.5px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            font-weight: 600;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-gray);
+            padding: 60px 40px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-left {
+            max-width: 400px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 50px;
+            background-color: var(--ut-orange);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .footer-logo-text h3 {
+            font-size: 16px;
+            color: var(--ut-orange);
+            font-weight: normal;
+        }
+
+        .footer-logo-text h4 {
+            font-size: 22px;
+            color: var(--text-main);
+            margin-top: -2px;
+        }
+
+        .footer-logo-text p {
+            font-size: 14px;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .footer-address {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-top: 30px;
+        }
+
+        .footer-right {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-width: 250px;
+        }
+
+        .footer-right a {
+            color: var(--ut-orange);
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        .footer-right a:hover {
+            text-decoration: underline;
+        }
+
+        /* Utility for Syllabus Icon */
+        .syllabus-icon {
+            display: inline-block;
+            margin-right: 4px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .two-col, .skills-topics {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .main-header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            .main-nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .meta-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            footer {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <span class="utexas">UTEXAS.EDU</span> <span>College of Natural Sciences</span> | <span>School of Computing</span>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="logo-area">
+            <div class="logo-icon">UT</div>
+            <div class="logo-text">
+                <h1>The University of Texas at Austin</h1>
+                <h2>Information</h2>
+            </div>
+        </div>
+        <div class="search-area">
+            <a href="#" style="color: #333; text-decoration: none; font-size: 14px;">Make a Gift</a>
+            <div class="search-bar">
+                <input type="text" placeholder="Search the site...">
+                <button type="submit">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <ul>
+            <li class="no-dropdown">About</li>
+            <li class="active">Programs</li>
+            <li class="no-dropdown">People</li>
+            <li class="no-dropdown">Research</li>
+            <li class="no-dropdown">Careers</li>
+            <li class="no-dropdown">Giving</li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+            <a href="#">Home</a> &gt; <a href="#">Programs</a> &gt; <a href="#">Course offerings</a> &gt; Human-Computer Interaction
+        </div>
+
+        <!-- Page Title -->
+        <h1 class="page-title">Human-Computer Interaction</h1>
+
+        <!-- Meta Info -->
+        <div class="meta-info">
+            <div><strong>Program:</strong> <a href="#" style="color: var(--ut-orange);">MSIS/PhD</a></div>
+            <div><strong>Course Areas:</strong> Human Computer Interaction/UX Design/UX Research</div>
+        </div>
+
+        <!-- Two Column Text -->
+        <div class="two-col">
+            <div>
+                <h2 class="section-title">Catalog Description</h2>
+                <p>The history and importance of human-computer interaction (HCI), theories of HCI design, modeling of computer users and interfaces, empirical techniques for analyzing systems and interfaces, interface design, and styles of interaction. Emphasis on reviewing research papers, current works, and future directions in HCI research.</p>
+            </div>
+            <div>
+                <h2 class="section-title">Prerequisites</h2>
+                <p>Graduate standing.</p>
+            </div>
+        </div>
+
+        <!-- Instructor Description -->
+        <h2 class="section-title">Instructor Description</h2>
+        <p>This course introduces students to human-computer interaction theories and design processes. The emphasis is on applied user experience (UX) design. However, the course starts by discussing fundamental aspects of human perception and cognition and linking them with design principles. The course presents an iterative evaluation-centered UX lifecycle and introduces students to a broader notion of user experience, including usability, usefulness, and emotional impact. The UX lifecycle should be viewed as template intended to be instantiated in many different ways to match the constraints of a particular development project. The UX lifecycle activities we cover include contextual inquiry and analysis, requirements extraction, design-informing models, design thinking, ideation, sketching, conceptual design, and formative evaluation.</p>
+
+        <!-- Skills & Topics -->
+        <div class="skills-topics">
+            <div>
+                <h3 style="font-size: 18px; margin-bottom: 10px;">Skills and Knowledge</h3>
+                <ul>
+                    <li>UX Design Cycle</li>
+                    <li>user Research</li>
+                    <li>intro To Prototyping</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="font-size: 18px; margin-bottom: 10px;">Topics and Concepts</h3>
+                <ul>
+                    <li>Human Cognition And Perception</li>
+                    <li>evaluation Methods</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Current and Upcoming Classes -->
+        <h2 class="section-title" style="font-size: 28px;">Current and Upcoming Classes for this Course</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Semester</th>
+                        <th>Day(s)</th>
+                        <th>Start Time(s)</th>
+                        <th>End Time(s)</th>
+                        <th>Building</th>
+                        <th>Room</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="#">INF 385C: Human-Computer Interaction</a><br>
+                            Michael Mcquaid, Valle Hansen <span class="syllabus-icon">📄</span><a href="#">Syllabus</a>
+                        </td>
+                        <td>Fall Term 2026</td>
+                        <td>Thursday</td>
+                        <td>3:30 pm</td>
+                        <td>6:30 pm</td>
+                        <td>UTA</td>
+                        <td>1.208</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Past Classes -->
+        <h2 class="section-title" style="font-size: 28px;">Past Classes for this Course</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Semester</th>
+                        <th>Day(s)</th>
+                        <th>Start Time(s)</th>
+                        <th>End Time(s)</th>
+                        <th>Building</th>
+                        <th>Room</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="#">INF 385C: Human-Computer Interaction</a><br>
+                            Jacek Gwizdka <span class="syllabus-icon">📄</span><a href="#">Syllabus</a>
+                        </td>
+                        <td>Fall Term 2025</td>
+                        <td>Thursday</td>
+                        <td>12:30 pm</td>
+                        <td>3:30 pm</td>
+                        <td>UTA</td>
+                        <td>1.208</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#">INF 385C: Human-Computer Interaction</a><br>
+                            Michael Mcquaid
+                        </td>
+                        <td>Spring Term 2025</td>
+                        <td>Thursday</td>
+                        <td>12:30 PM</td>
+                        <td>3:30 PM</td>
+                        <td>UTA</td>
+                        <td>1.208</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#">INF 385C: Human-Computer Interaction</a><br>
+                            Jacek Gwizdka <span class="syllabus-icon">📄</span><a href="#">Syllabus</a>
+                        </td>
+                        <td>Fall Term 2024</td>
+                        <td>Wednesday</td>
+                        <td>12:00 PM</td>
+                        <td>3:00 PM</td>
+                        <td>UTA</td>
+                        <td>1.208</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#">INF 385C: Human-Computer Interaction</a><br>
+                            Michael Mcquaid <span class="syllabus-icon">📄</span><a href="#">Syllabus</a>
+                        </td>
+                        <td>Spring Term 2024</td>
+                        <td>Thursday</td>
+                        <td>3:30 PM</td>
+                        <td>6:30 PM</td>
+                        <td>UTA</td>
+                        <td>1.504</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#">INF 385C: Human-Computer Interaction</a><br>
+                            Jacek Gwizdka <span class="syllabus-icon">📄</span><a href="#">Syllabus</a>
+                        </td>
+                        <td>Fall Term 2023</td>
+                        <td>Wednesday</td>
+                        <td>12:00 PM</td>
+                        <td>3:00 PM</td>
+                        <td>UTA</td>
+                        <td>1.208</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#">INF 385C: Human-Computer Interaction</a><br>
+                            Michael Mcquaid <span class="syllabus-icon">📄</span><a href="#">Syllabus</a>
+                        </td>
+                        <td>Spring Term 2023</td>
+                        <td>Thursday</td>
+                        <td>12:30 PM</td>
+                        <td>3:30 PM</td>
+                        <td>UTA</td>
+                        <td>1.208</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#">INF 385C: Human-Computer Interaction</a><br>
+                            Jacek Gwizdka <span class="syllabus-icon">📄</span><a href="#">Syllabus</a>
+                        </td>
+                        <td>Fall Term 2022</td>
+                        <td>Wednesday</td>
+                        <td>12:00 PM</td>
+                        <td>3:00 PM</td>
+                        <td>UTA</td>
+                        <td>1.208</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-left">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">UT</div>
+                <div class="footer-logo-text">
+                    <h3>The University of Texas at Austin</h3>
+                    <h4>Information</h4>
+                    <p>College of Natural Sciences / School of Computing</p>
+                </div>
+            </div>
+            <div class="footer-address">
+                1616 Guadalupe St, Suite #5.202<br>
+                Austin, Texas 78701-1213
+            </div>
+        </div>
+        <div class="footer-right">
+            <a href="#">Contact Us</a>
+            <a href="#">News &amp; Events</a>
+            <a href="#">Email Lists</a>
+            <a href="#">Indigenous Land Acknowledgment</a>
+            <a href="#">Resources</a>
+            <a href="#">Knowledge Base</a>
+            <a href="#">Login</a>
+        </div>
+    </footer>
+
+</body>
+</html>
